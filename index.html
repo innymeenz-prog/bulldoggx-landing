@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BulldogGX — Gamers. Best. Friend.</title>
+<meta name="description" content="The first peer-to-peer gaming wager platform. No rake. No middleman. Wager on your skills, win real rewards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#29b6f6;--blue2:#0288d1;--blue3:#4DC9F6;--dark:#0a0c10;--dark2:#0e1117;--dark3:#141820;--gray:#8a8f99;--light:#c0c5cc}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+::selection{background:var(--blue);color:#000}
+
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;transition:all .4s}
+.nav.scrolled{background:rgba(10,12,16,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(41,182,246,.1)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-logo{height:36px;cursor:pointer;transition:transform .3s}
+.nav-logo:hover{transform:scale(1.05)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;padding:8px 16px;transition:color .3s;text-decoration:none}
+.nav-link:hover{color:var(--blue)}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#000;border:none;border-radius:6px;padding:10px 24px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.nav-cta:hover{box-shadow:0 0 30px rgba(41,182,246,.4);transform:translateY(-1px)}
+
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px}
+.hero-bulldog{width:180px;height:180px;object-fit:contain;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(41,182,246,.3))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hero-logo{width:min(500px,90vw);margin-top:24px;animation:fadeUp .8s ease both;filter:drop-shadow(0 0 20px rgba(41,182,246,.2))}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,4.5rem);letter-spacing:.04em;line-height:1.05;margin-top:32px;animation:fadeUp .8s .2s ease both}
+.hero h1 span{background:linear-gradient(135deg,var(--blue3),var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--light);max-width:600px;line-height:1.6;margin-top:20px;font-weight:400;animation:fadeUp .8s .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+.signup-row{display:flex;gap:12px;margin-top:40px;width:min(520px,90vw);animation:fadeUp .8s .6s ease both}
+.signup-row input{flex:1;height:56px;background:var(--dark2);border:1px solid rgba(41,182,246,.15);border-radius:8px;padding:0 20px;color:#fff;font-size:1rem;font-family:'Rajdhani',sans-serif;font-weight:500;transition:border-color .3s,box-shadow .3s;outline:none}
+.signup-row input::placeholder{color:#444}
+.signup-row input:focus{border-color:var(--blue);box-shadow:0 0 20px rgba(41,182,246,.15)}
+.signup-row button{height:56px;padding:0 32px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#000;border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap}
+.signup-row button:hover{box-shadow:0 0 40px rgba(41,182,246,.5);transform:translateY(-2px)}
+.signup-row button:active{transform:translateY(0)}
+
+.free-bgx{color:var(--blue);font-size:.95rem;margin-top:16px;font-weight:600;letter-spacing:.05em;animation:fadeUp .8s .7s ease both}
+.free-bgx span{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+.success-msg{color:#4caf50;font-size:1.1rem;font-weight:600;margin-top:16px;animation:fadeUp .4s ease both}
+
+.investor-link{color:var(--gray);font-size:1rem;margin-top:32px;cursor:pointer;transition:color .3s;animation:fadeUp .8s .8s ease both;text-decoration:none;font-weight:500;letter-spacing:.03em}
+.investor-link:hover{color:var(--blue)}
+.investor-link span{transition:transform .3s;display:inline-block}
+.investor-link:hover span{transform:translateX(4px)}
+
+.section{position:relative;z-index:1;padding:100px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+
+.section-label{font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);font-weight:700;text-align:center;margin-bottom:12px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);text-align:center;letter-spacing:.03em;margin-bottom:60px}
+
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:48px 32px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
+.feature:hover{border-color:rgba(41,182,246,.25);background:rgba(41,182,246,.04);transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.feature-icon{font-size:2.8rem;margin-bottom:20px;display:block}
+.feature-num{position:absolute;top:-10px;right:10px;font-family:'Orbitron',sans-serif;font-size:5rem;font-weight:900;color:rgba(41,182,246,.03);line-height:1;pointer-events:none}
+.feature h3{font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:.15em;color:var(--blue);margin-bottom:8px;text-transform:uppercase;font-weight:700}
+.feature p{color:var(--gray);font-size:1rem;line-height:1.6;font-weight:400}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:80px;padding:48px 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.stat-val{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--blue);line-height:1}
+.stat-label{font-size:.85rem;color:var(--gray);margin-top:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
+.inv-section{background:linear-gradient(180deg,transparent 0%,rgba(41,182,246,.03) 50%,transparent 100%)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.inv-content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.03em;line-height:1.1;margin-bottom:24px}
+.inv-content h2 span{background:linear-gradient(135deg,var(--blue3),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.inv-content p{color:var(--light);font-size:1.05rem;line-height:1.7;margin-bottom:32px;font-weight:400}
+.inv-points{list-style:none;margin-bottom:40px}
+.inv-points li{color:var(--light);font-size:1rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:12px;font-weight:500}
+.inv-points li::before{content:'';width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0}
+
+.inv-form{display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:48px 36px}
+.inv-form h3{font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:700}
+.inv-form p{color:var(--gray);font-size:.95rem;margin-bottom:8px;font-weight:400}
+.inv-form input{height:52px;background:var(--dark);border:1px solid rgba(41,182,246,.12);border-radius:8px;padding:0 20px;color:#fff;font-size:1rem;font-family:'Rajdhani',sans-serif;font-weight:500;transition:border-color .3s,box-shadow .3s;outline:none}
+.inv-form input::placeholder{color:#444}
+.inv-form input:focus{border-color:var(--blue);box-shadow:0 0 20px rgba(41,182,246,.1)}
+.inv-form button{height:52px;background:transparent;border:2px solid var(--blue);color:var(--blue);border-radius:8px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.inv-form button:hover{background:var(--blue);color:#000;box-shadow:0 0 30px rgba(41,182,246,.3)}
+
+.footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.04);padding:40px 24px;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{color:var(--gray);font-size:.85rem;font-weight:400}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:var(--gray);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.05em;transition:color .3s}
+.footer-links a:hover{color:var(--blue)}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+.mobile-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,12,16,.98);border-bottom:1px solid rgba(41,182,246,.1);padding:24px;z-index:99;flex-direction:column;gap:16px;align-items:center}
+.mobile-nav.open{display:flex}
+
+@media(max-width:900px){
+.nav-links{display:none!important}
+.mobile-menu{display:flex!important}
+.features{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr}
+.inv-grid{grid-template-columns:1fr}
+.footer-inner{flex-direction:column;gap:16px}
+.signup-row{flex-direction:column}
+.signup-row button{width:100%}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav class="nav" id="nav">
+<div class="nav-inner">
+<img src="images/logo-head.png" alt="BulldogGX" class="nav-logo" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})" style="height:40px">
+<div class="nav-links">
+<a href="#how" class="nav-link">How It Works</a>
+<a href="#why" class="nav-link">Why Us</a>
+<a href="#investors" class="nav-link">Investors</a>
+<button class="nav-cta" onclick="document.getElementById('hero-email').focus()">Get Early Access</button>
+</div>
+<button class="mobile-menu" id="mobileBtn" onclick="document.getElementById('mobileNav').classList.toggle('open')">&#9776;</button>
+</div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+<a href="#how" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">How It Works</a>
+<a href="#why" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">Why Us</a>
+<a href="#investors" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">Investors</a>
+<button class="nav-cta" onclick="document.getElementById('mobileNav').classList.remove('open');document.getElementById('hero-email').focus()">Get Early Access</button>
+</div>
+
+<section class="hero" id="hero">
+<img src="images/logo-head.png" alt="BulldogGX Mascot" class="hero-bulldog">
+<img src="images/logo-text.png" alt="BulldogGX - Gamers Best Friend" class="hero-logo">
+<h1>WAGER ON YOUR SKILLS.<br><span>WIN REAL REWARDS.</span></h1>
+<p class="hero-sub">The first peer-to-peer gaming wager platform powered by blockchain. No rake. No middleman. Just you, your opponent, and bragging rights that pay.</p>
+<form class="signup-row" id="earlyForm" onsubmit="handleEarlySignup(event)">
+<input type="email" id="hero-email" placeholder="Enter your email for early access" required>
+<button type="submit">GET EARLY ACCESS</button>
+</form>
+<div class="free-bgx" id="freeBgx"><span>&#127873;</span> Sign up now and receive <strong>500 FREE BGX tokens</strong> at launch</div>
+<div class="success-msg" id="earlySuccess" style="display:none">&#10003; You're on the list! Check your inbox at launch.</div>
+<a href="#investors" class="investor-link">Are you an investor? Learn how to be part of the next big thing <span>&rarr;</span></a>
+</section>
+
+<section class="section" id="how">
+<div class="section-inner">
+<div class="section-label reveal">THE PLATFORM</div>
+<div class="section-title reveal">HOW IT WORKS</div>
+<div class="features">
+<div class="feature reveal">
+<div class="feature-num">01</div>
+<span class="feature-icon">&#127918;</span>
+<h3>Find Your Opponent</h3>
+<p>Create a match or jump into the queue. Pick your game, your console, your stake. We'll match you with someone ready to throw down.</p>
+</div>
+<div class="feature reveal">
+<div class="feature-num">02</div>
+<span class="feature-icon">&#128176;</span>
+<h3>Stake Your BGX</h3>
+<p>Both players lock BGX tokens into a secure on-chain escrow. No one touches the funds until there's a verified winner. Trustless and transparent.</p>
+</div>
+<div class="feature reveal">
+<div class="feature-num">03</div>
+<span class="feature-icon">&#127942;</span>
+<h3>Win &amp; Get Paid</h3>
+<p>Play the match on your console. Submit your results. When both players agree on the winner, funds are released instantly. No waiting. No disputes.</p>
+</div>
+</div>
+
+<div class="stats reveal">
+<div style="text-align:center">
+<div class="stat-val" data-target="0">0%</div>
+<div class="stat-label">Platform Rake</div>
+</div>
+<div style="text-align:center">
+<div class="stat-val">&lt;5s</div>
+<div class="stat-label">Payout Speed</div>
+</div>
+<div style="text-align:center">
+<div class="stat-val">100%</div>
+<div class="stat-label">On-Chain</div>
+</div>
+<div style="text-align:center">
+<div class="stat-val">P2P</div>
+<div class="stat-label">No Middleman</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="why">
+<div class="section-inner">
+<div class="section-label reveal">THE DIFFERENCE</div>
+<div class="section-title reveal">WHY BULLDOGGX</div>
+<div class="features">
+<div class="feature reveal">
+<div class="feature-num">&#9889;</div>
+<span class="feature-icon">&#128274;</span>
+<h3>Trustless Escrow</h3>
+<p>Smart contracts hold your wager. No admin can touch your funds. The code is the referee — transparent, immutable, and fair.</p>
+</div>
+<div class="feature reveal">
+<div class="feature-num">&#9889;</div>
+<span class="feature-icon">&#128640;</span>
+<h3>Built on Base</h3>
+<p>Lightning-fast transactions on Coinbase's Layer 2. Pennies for gas. Seconds for settlement. The speed gamers demand.</p>
+</div>
+<div class="feature reveal">
+<div class="feature-num">&#9889;</div>
+<span class="feature-icon">&#129351;</span>
+<h3>Zero Rake</h3>
+<p>Other platforms take 10-15% of every pot. We take zero. The full pot goes to the winner. That's our promise.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section inv-section" id="investors">
+<div class="section-inner">
+<div class="section-label reveal">OPPORTUNITY</div>
+<div class="section-title reveal">INVEST IN THE FUTURE OF GAMING</div>
+<div class="inv-grid">
+<div class="inv-content reveal">
+<h2>Be part of <span>the next generation</span> of competitive gaming</h2>
+<p>The online gaming wager market is projected to reach $180B by 2030. BulldogGX is positioned to capture this market with a blockchain-first, zero-rake platform that puts gamers first.</p>
+<ul class="inv-points">
+<li>Zero-rake model disrupts legacy platforms taking 10-15%</li>
+<li>Token economics create self-sustaining ecosystem</li>
+<li>Built on Coinbase's Base — institutional-grade infrastructure</li>
+<li>Smart wallet onboarding — no crypto knowledge required</li>
+<li>First-mover in blockchain-native peer-to-peer gaming wagers</li>
+</ul>
+</div>
+<div class="reveal">
+<form class="inv-form" id="invForm" onsubmit="handleInvestorSignup(event)">
+<h3>Request Investor Info</h3>
+<p>Get our pitch deck, tokenomics, and roadmap delivered to your inbox.</p>
+<input type="text" id="inv-name" placeholder="Full name" required>
+<input type="email" id="inv-email" placeholder="Email address" required>
+<input type="tel" id="inv-phone" placeholder="Phone number (optional)">
+<button type="submit">REQUEST INFO PACKET</button>
+<div class="success-msg" id="invSuccess" style="display:none">&#10003; We'll be in touch within 24 hours.</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-copy">&copy; 2026 BulldogGX. All rights reserved.</div>
+<div class="footer-links">
+<a href="#hero">Home</a>
+<a href="#how">How It Works</a>
+<a href="#investors">Investors</a>
+</div>
+</div>
+</footer>
+
+<script>
+// Particle system
+const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
+let particles=[];
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+for(let i=0;i<70;i++)particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.5+.5,o:Math.random()*.35+.05});
+function drawParticles(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle=`rgba(41,182,246,${p.o})`;ctx.fill();
+});
+particles.forEach((a,i)=>{
+for(let j=i+1;j<particles.length;j++){
+const b=particles[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+if(d<110){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(41,182,246,${.05*(1-d/110)})`;ctx.stroke()}
+}});
+requestAnimationFrame(drawParticles)}
+drawParticles();
+
+// Nav scroll
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+
+// Scroll reveals
+const revealEls=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);revealObs.unobserve(e.target)}})},{threshold:.12});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// Signup handlers
+function handleEarlySignup(e){
+e.preventDefault();
+const email=document.getElementById('hero-email').value;
+if(!email)return;
+// POST to your Bubble backend or API
+fetch('https://bulldoggx.com/version-test/api/1.1/obj/Waitlist',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({email:email,source:'landing_page',user_type:'early_access'})
+}).catch(()=>{});
+document.getElementById('earlyForm').style.display='none';
+document.getElementById('freeBgx').style.display='none';
+document.getElementById('earlySuccess').style.display='block';
+}
+
+function handleInvestorSignup(e){
+e.preventDefault();
+const name=document.getElementById('inv-name').value;
+const email=document.getElementById('inv-email').value;
+const phone=document.getElementById('inv-phone').value;
+fetch('https://bulldoggx.com/version-test/api/1.1/obj/Waitlist',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({email:email,source:'landing_page',user_type:'investor',name:name,phone:phone})
+}).catch(()=>{});
+document.getElementById('invForm').innerHTML='<div class="success-msg" style="display:block;font-size:1.3rem;padding:40px 0">&#10003; We\'ll be in touch within 24 hours.<br><span style="color:var(--gray);font-size:.95rem">Check your inbox for our pitch deck.</span></div>';
+}
+</script>
+</body>
+</html>
