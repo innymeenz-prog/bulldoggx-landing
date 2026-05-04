@@ -394,7 +394,7 @@ function handleEarlySignup(e){
 e.preventDefault();
 const email=document.getElementById('hero-email').value;
 if(!email)return;
-fetch('https://bulldoggx.bubbleapps.io/version-test/api/1.1/obj/waitinglist',{
+fetch('https://app.bulldoggx.com/version-test/api/1.1/obj/waitinglist',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer c3aa661d02f590577b2d3fd8a5a579c4'},
 body:JSON.stringify({'email_text':email})
@@ -408,7 +408,7 @@ function handleInvestorSignup(e){
 e.preventDefault();
 const email=document.getElementById('inv-email').value;
 const phone=document.getElementById('inv-phone').value;
-fetch('https://bulldoggx.bubbleapps.io/version-test/api/1.1/obj/waitinglist',{
+fetch('https://app.bulldoggx.com/version-test/api/1.1/obj/waitinglist',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer c3aa661d02f590577b2d3fd8a5a579c4'},
 body:JSON.stringify({'email_text':email,'phone_number_text':phone})
