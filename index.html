@@ -397,7 +397,7 @@ if(!email)return;
 fetch('https://app.bulldoggx.com/version-test/api/1.1/obj/waitinglist',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer c3aa661d02f590577b2d3fd8a5a579c4'},
-body:JSON.stringify({'email_text':email})
+body:JSON.stringify({'Email':email})
 }).catch(()=>{});
 document.getElementById('earlyForm').style.display='none';
 document.getElementById('freeBgx').style.display='none';
@@ -411,7 +411,7 @@ const phone=document.getElementById('inv-phone').value;
 fetch('https://app.bulldoggx.com/version-test/api/1.1/obj/waitinglist',{
 method:'POST',
 headers:{'Content-Type':'application/json','Authorization':'Bearer c3aa661d02f590577b2d3fd8a5a579c4'},
-body:JSON.stringify({'email_text':email,'phone_number_text':phone})
+body:JSON.stringify({'Email':email,'Phone Number':phone})
 }).catch(()=>{});
 document.getElementById('invForm').innerHTML='<div class="success-msg" style="display:block;font-size:1.3rem;padding:40px 0">&#10003; We\'ll be in touch within 24 hours.<br><span style="color:var(--gray);font-size:.95rem">Check your inbox for our pitch deck.</span></div>';
 }
