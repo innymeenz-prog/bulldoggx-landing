@@ -1,5 +1,9 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
-  "framework": null
+  "framework": null,
+  "redirects": [
+    { "source": "/verification", "destination": "/recording-notice", "permanent": true },
+    { "source": "/verification/", "destination": "/recording-notice", "permanent": true }
+  ]
 }
