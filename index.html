@@ -65,11 +65,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 
 .success-msg{color:#4caf50;font-size:1.1rem;font-weight:600;margin-top:16px;animation:fadeUp .4s ease both}
 
-.investor-link{color:var(--gray);font-size:1rem;margin-top:32px;cursor:pointer;transition:color .3s;animation:fadeUp .8s .8s ease both;text-decoration:none;font-weight:500;letter-spacing:.03em}
-.investor-link:hover{color:var(--blue)}
-.investor-link span{transition:transform .3s;display:inline-block}
-.investor-link:hover span{transform:translateX(4px)}
-
 .section{position:relative;z-index:1;padding:100px 24px}
 .section-inner{max-width:1100px;margin:0 auto}
 
@@ -87,24 +82,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:80px;padding:48px 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
 .stat-val{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--blue);line-height:1}
 .stat-label{font-size:.85rem;color:var(--gray);margin-top:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
-
-.inv-section{background:transparent}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.inv-content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.03em;line-height:1.1;margin-bottom:24px}
-.inv-content h2 span{background:linear-gradient(135deg,var(--blue3),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.inv-content p{color:var(--light);font-size:1.05rem;line-height:1.7;margin-bottom:32px;font-weight:400}
-.inv-points{list-style:none;margin-bottom:40px}
-.inv-points li{color:var(--light);font-size:1rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:12px;font-weight:500}
-.inv-points li::before{content:'';width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0}
-
-.inv-form{display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:48px 36px}
-.inv-form h3{font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:700}
-.inv-form p{color:var(--gray);font-size:.95rem;margin-bottom:8px;font-weight:400}
-.inv-form input{height:52px;background:#111;border:1px solid rgba(41,182,246,.12);border-radius:8px;padding:0 20px;color:#fff;font-size:1rem;font-family:'Rajdhani',sans-serif;font-weight:500;transition:border-color .3s,box-shadow .3s;outline:none}
-.inv-form input::placeholder{color:#444}
-.inv-form input:focus{border-color:var(--blue);box-shadow:0 0 20px rgba(41,182,246,.1)}
-.inv-form button{height:52px;background:transparent;border:2px solid var(--blue);color:var(--blue);border-radius:8px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s}
-.inv-form button:hover{background:var(--blue);color:#000;box-shadow:0 0 30px rgba(41,182,246,.3)}
 
 .footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.04);padding:40px 24px;text-align:center}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -125,7 +102,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 .mobile-menu{display:flex!important}
 .features{grid-template-columns:1fr}
 .stats{grid-template-columns:1fr 1fr}
-.inv-grid{grid-template-columns:1fr}
 .footer-inner{flex-direction:column;gap:16px}
 .signup-row{flex-direction:column}
 .signup-row button{width:100%}
@@ -162,7 +138,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 <div class="nav-links">
 <a href="#how" class="nav-link">How It Works</a>
 <a href="#why" class="nav-link">Why Us</a>
-<a href="#investors" class="nav-link">Investors</a>
 <button class="nav-cta" onclick="document.getElementById('hero-email').focus()">Get Early Access</button>
 </div>
 <button class="mobile-menu" id="mobileBtn" onclick="document.getElementById('mobileNav').classList.toggle('open')">&#9776;</button>
@@ -171,7 +146,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 <div class="mobile-nav" id="mobileNav">
 <a href="#how" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">How It Works</a>
 <a href="#why" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">Why Us</a>
-<a href="#investors" class="nav-link" onclick="document.getElementById('mobileNav').classList.remove('open')">Investors</a>
 <button class="nav-cta" onclick="document.getElementById('mobileNav').classList.remove('open');document.getElementById('hero-email').focus()">Get Early Access</button>
 </div>
 
@@ -197,7 +171,6 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 <a href="https://discord.gg/hYVSGtNHze" target="_blank" class="discord-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>JOIN OUR DISCORD</a>
 <div class="success-msg" id="earlySuccess" style="display:none">&#10003; You're on the list! Check your inbox at launch.</div>
 <div id="earlyError" style="display:none;color:#fb7185;font-size:1rem;font-weight:600;margin-top:16px"></div>
-<a href="#investors" class="investor-link">Are you an investor? Learn how to be part of the next big thing <span>&rarr;</span></a>
 </section>
 
 <section class="section" id="how">
@@ -273,43 +246,11 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 </div>
 </section>
 
-<section class="section inv-section" id="investors">
-<div class="section-inner">
-<div class="section-label reveal">OPPORTUNITY</div>
-<div class="section-title reveal">INVEST IN THE FUTURE OF GAMING</div>
-<div class="inv-grid">
-<div class="inv-content reveal">
-<h2>Be part of <span>the next generation</span> of competitive gaming</h2>
-<p>BulldogGX is building a blockchain-first platform for head-to-head skill competition on console, with a simple 2% platform fee on payouts and a product that puts gamers first.</p>
-<ul class="inv-points">
-<li>Simple 2% platform fee on payouts, shown before every entry</li>
-<li>Built on Coinbase's Base — institutional-grade infrastructure</li>
-<li>Smart wallet onboarding — no crypto knowledge required</li>
-<li>First-mover in blockchain-native head-to-head skill competitions</li>
-</ul>
-</div>
-<div class="reveal">
-<form class="inv-form" id="invForm" onsubmit="handleInvestorSignup(event)">
-<h3>Request Investor Info</h3>
-<p>Get our pitch deck and roadmap delivered to your inbox.</p>
-<input type="email" id="inv-email" placeholder="Email address" required>
-<input type="tel" id="inv-phone" placeholder="Phone number (optional)">
-<input type="text" name="company" id="inv-company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none">
-<button type="submit">REQUEST INFO PACKET</button>
-<div class="success-msg" id="invSuccess" style="display:none">&#10003; We'll be in touch within 24 hours.</div>
-<div id="invError" style="display:none;color:#fb7185;font-size:1rem;font-weight:600;margin-top:16px"></div>
-</form>
-</div>
-</div>
-</div>
-</section>
-
 <footer class="footer">
 <div class="footer-inner">
 <div class="footer-links">
 <a href="#hero">Home</a>
 <a href="#how">How It Works</a>
-<a href="#investors">Investors</a>
 <a href="https://discord.gg/hYVSGtNHze" target="_blank">Discord</a>
 </div>
 <nav class="footer-legal" aria-label="Legal">
@@ -322,6 +263,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;po
 <a href="/fair-play">Fair Play</a>
 <a href="/recording-notice">Recording Notice</a>
 </nav>
+<div class="footer-copy">BULLDOGGX LLC &middot; Tampa, Florida &middot; <a href="mailto:support@bulldoggx.com" style="color:inherit">support@bulldoggx.com</a></div>
 <div class="footer-copy">18+. Paid play not available in AZ, HI, IA, MS, MT, NV, SD or WA. Void where prohibited. &copy; 2026 BULLDOGGX LLC</div>
 </div>
 </footer>
@@ -483,31 +425,6 @@ document.getElementById('earlySuccess').style.display='block';
 errEl.textContent='Could not reach the server. Check your connection and try again.';
 errEl.style.display='block';
 if(btn){btn.disabled=false;btn.textContent='GET EARLY ACCESS'}
-}
-}
-
-async function handleInvestorSignup(e){
-e.preventDefault();
-const email=document.getElementById('inv-email').value;
-const phone=document.getElementById('inv-phone').value;
-const company=document.getElementById('inv-company').value;
-const btn=document.querySelector('#invForm button[type="submit"]');
-const errEl=document.getElementById('invError');
-errEl.style.display='none';
-if(btn){btn.disabled=true;btn.textContent='SENDING...'}
-try{
-const r=await postWaitlist(email,'landing-investor',company,phone);
-if(!r.ok){
-errEl.textContent=waitlistError(r.status,r.data);
-errEl.style.display='block';
-if(btn){btn.disabled=false;btn.textContent='REQUEST INFO PACKET'}
-return;
-}
-document.getElementById('invForm').innerHTML='<div class="success-msg" style="display:block;font-size:1.3rem;padding:40px 0">&#10003; We\'ll be in touch within 24 hours.<br><span style="color:var(--gray);font-size:.95rem">Check your inbox for our pitch deck.</span></div>';
-}catch(err){
-errEl.textContent='Could not reach the server. Check your connection and try again.';
-errEl.style.display='block';
-if(btn){btn.disabled=false;btn.textContent='REQUEST INFO PACKET'}
 }
 }
 </script>
